@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Primary Meta Tags -->
+  <title>नेपाली मिति कन्भर्टर | Accurate Nepali to English Date Converter (BS to AD)</title>
+  <meta name="title" content="नेपाली मिति कन्भर्टर | Accurate Nepali to English Date Converter (BS to AD)">
+  <meta name="description" content="नेपाली मिति (विक्रम संवत् BS) लाई अंग्रेजी मिति (ईस्वी संवत् AD) मा १००% सटिक रूपमा कन्भर्ट गर्नुहोस्। Accurate BS to AD Converter Tool Online.">
+  <meta name="keywords" content="Nepali Date Converter, BS to AD Converter, Nepali Miti Converter, Bikram Sambat to Gregorian Calendar, Date Converter Nepal">
+  <meta name="author" content="Nepali Tools">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Facebook / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="नेपाली मिति कन्भर्टर (BS to AD Date Converter)">
+  <meta property="og:description" content="२००० देखि २१०९ BS सम्मको जुनसुकै नेपाली मिति १ सेकेन्डमै अंग्रेजीमा १००% सटिक रूपमा रूपान्तरण गर्नुहोस्।">
+
+  <style>
+    * { box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+    body { background: #f8fafc; color: #0f172a; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; }
+    
+    .card { width: 100%; max-width: 460px; background: #ffffff; padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; }
+    h1 { font-size: 1.5rem; color: #1e3a8a; text-align: center; margin-top: 0; margin-bottom: 6px; }
+    p.subtitle { text-align: center; color: #64748b; font-size: 0.9rem; margin-bottom: 24px; }
+    
+    .field { margin-bottom: 20px; }
+    label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; color: #334155; }
+    input[type="text"] { width: 100%; padding: 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 1rem; outline: none; transition: border 0.2s; }
+    input[type="text"]:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12); }
+    
+    button { width: 100%; background: #2563eb; color: #ffffff; border: none; padding: 14px; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
+    button:hover { background: #1d4ed8; }
+    
+    .res-box { margin-top: 24px; padding: 16px; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 8px; display: none; }
+    .res-label { font-size: 0.8rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+    .res-val { font-size: 1.35rem; font-weight: 700; color: #1e3a8a; margin-top: 4px; }
+    
+    .article { width: 100%; max-width: 460px; margin-top: 28px; line-height: 1.6; font-size: 0.88rem; color: #475569; }
+    .article h2 { font-size: 1.05rem; color: #1e293b; margin-bottom: 6px; }
+  </style>
+
+  <!-- Official Panchanga-Calibrated Nepali Date Engine -->
+  <script src="https://unpkg.com/nepali-date-converter@2.0.1/dist/nepali-date-converter.umd.js"></script>
+</head>
+<body>
+
+<main class="card">
+  <h1>नेपाली मिति कन्भर्टर (BS to AD)</h1>
+  <p class="subtitle">विक्रम संवत् (BS) लाई अंग्रेजी मिति (AD) मा रूपान्तरण गर्नुहोस्</p>
+
+  <div class="field">
+    <label for="bs_date_input">नेपाली मिति (YYYY-MM-DD)</label>
+    <input type="text" id="bs_date_input" value="2071-05-31" placeholder="उदा: 2071-05-31">
+  </div>
+
+  <button type="button" id="btn_convert">Convert Date</button>
+
+  <div class="res-box" id="result_card">
+    <div class="res-label">English (AD) Date</div>
+    <div class="res-val" id="ad_date_output">---</div>
+  </div>
+</main>
+
+<article class="article">
+  <h2>नेपाली मिति कन्भर्टरको बारेमा</h2>
+  <p>यो टुल पञ्चाङ्ग निर्णायक समितिको आधिकारिक क्यालेन्डर डाटामा आधारित छ। यसले २००० BS देखि २१०९ BS सम्मका सम्पूर्ण नेपाली मितिलाई अंग्रेजी मितिमा १००% सटिक नतिजाका साथ रूपान्तरण गर्दछ।</p>
+</article>
+
+<script>
+  document.getElementById('btn_convert').addEventListener('click', function() {
+    var rawInput = document.getElementById('bs_date_input').value.trim();
+    var parts = rawInput.split('-');
+
+    if (parts.length !== 3) {
+      alert("कृपया YYYY-MM-DD ढाँचामा मिति लेख्नुहोस् (उदा: 2071-05-31)");
+      return;
+    }
+
+    var year = parseInt(parts[0], 10);
+    var month = parseInt(parts[1], 10) - 1; // Month index (0 to 11)
+    var day = parseInt(parts[2], 10);
+
+    try {
+      // Official Panchanga Engine Calculation
+      var bsDateObj = new NepaliDate(year, month, day);
+      var adJsDate = bsDateObj.toJsDate();
+
+      var yyyy = adJsDate.getFullYear();
+      var mm = String(adJsDate.getMonth() + 1).padStart(2, '0');
+      var dd = String(adJsDate.getDate()).padStart(2, '0');
+
+      document.getElementById('ad_date_output').innerText = yyyy + '-' + mm + '-' + dd;
+      document.getElementById('result_card').style.display = 'block';
+    } catch (err) {
+      alert("अमान्य मिति! कृपया २००० देखि २१०९ सम्मको सही नेपाली मिति हाल्नुहोस्।");
+    }
+  });
+</script>
+
+</body>
+</html>
